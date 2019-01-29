@@ -2,61 +2,58 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DestroyOffScreen : MonoBehaviour {
+public class DestroyOffScreen : MonoBehaviour
+{
 
-    public float offset = 16f;
+	public float offset = 16f;
 
-    private bool offScreen;
-    private float offScreenX = 0f;
+	private bool offScreen;
+	private float offScreenX = 0f;
 
-    private Rigidbody2D myBody;
+	private Rigidbody2D myBody;
 
-     void Awake()
-    {
-        myBody = GetComponent<Rigidbody2D>();
+	void Awake ()
+	{
+		myBody = GetComponent<Rigidbody2D> ();
 
-    }
+	}
 
-    // Use this for initialization
-    void Start () {
-        offScreenX = (Screen.width / PixelPerfectCamera.pixelsToUnits) / 2 + offset;
+	// Use this for initialization
+	void Start ()
+	{
+		offScreenX = (Screen.width / PixelPerfectCamera.pixelsToUnits) / 2 + offset;
 
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
 
-        var posX = transform.position.x;
-        var dirX = myBody.velocity.x;
+		var posX = transform.position.x;
+		var dirX = myBody.velocity.x;
 
-        if( Mathf.Abs(posX) > offScreenX)
-        {
+		if (Mathf.Abs (posX) > offScreenX) {
 
-            if( dirX < 0 && posX < -offScreenX)
-            {
-                offScreen = true;
+			if (dirX < 0 && posX < -offScreenX) {
+				offScreen = true;
           
-            }else if ( dirX > 0 && posX > offScreenX)
-            {
-                offScreen = true;
-            }
+			} else if (dirX > 0 && posX > offScreenX) {
+				offScreen = true;
+			}
 
-        }
-        else
-        {
-            offScreen = false;
-        }
+		} else {
+			offScreen = false;
+		}
 
-        if (offScreen)
-        {
-            OnOutOfBounds();
-        }
+		if (offScreen) {
+			OnOutOfBounds ();
+		}
 		
 	}
 
-    public void OnOutOfBounds()
-    {
-        offScreen = false;
-        Destroy(gameObject);
-    }
+	public void OnOutOfBounds ()
+	{
+		offScreen = false;
+		GameObjectUtil.Destroy (gameObject);
+	}
 }
