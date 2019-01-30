@@ -322,6 +322,7 @@ MonoBehaviour:
   - {fileID: 1360072546952718, guid: cc9bfab66365df04eb96f13add9e68cf, type: 2}
   delay: 2
   active: 1
+  delayRange: {x: 1, y: 2}
 --- !u!4 &1605366133
 Transform:
   m_ObjectHideFlags: 0
